@@ -1,0 +1,634 @@
+  public static void main(String[] args) throws JAXBException, FileNotFoundException {
+
+        int a = 0;
+        while (a < 3){
+
+            Message msg = new Message("FWB", "http://www.champ.aero/broker", "http://www.champ.aero/broker/FWB", "FWB");
+
+            JAXBContext jc = JAXBContext.newInstance(Message.class);
+
+            Marshaller mar = jc.createMarshaller();
+
+            mar.setListener(new Marshaller.Listener() {
+
+                public void beforeMarshal(Object object) {
+                    if(object instanceof AWBNumber) {
+
+                        int index = 0;
+                        AWBNumber awbNumber = (AWBNumber)object;
+                        awbNumber.setSerial(Integer.toString(Integer.parseInt(awbNumber.getSerial()) + index));
+                        index++;
+                    }
+                }
+            });
+
+
+
+            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            mar.marshal(msg, new File("D:\\SeleniumWebDriver1\\JAXBProject\\src\\XML\\msg" + a + ".xml"));
+
+            a++;
+
+        }
+
+    }
+
+    //checkout client scene
+                    BorderPane borderpaneCheckout=new BorderPane();
+                    borderpaneCheckout.setPadding(new Insets(10, 20, 10, 20));
+
+                    Text titleText=new Text("Checkout now");
+                    titleText.setFont(Font.font(null, FontWeight.BOLD, 60));
+                    borderpaneCheckout.setTop(titleText);
+                    Text paymentText=new Text("Choose your payment method");
+                    paymentText.setFont(new Font("verdana", 32));
+                    borderpaneCheckout.setLeft(paymentText);
+
+                    ToggleGroup paymentToggle = new ToggleGroup();
+                    RadioButton cash = new RadioButton("cash");
+                    cash.setToggleGroup(paymentToggle);
+                    cash.setSelected(true);
+                    RadioButton visa = new RadioButton("visa");
+                    visa.setToggleGroup(paymentToggle);
+
+                    if(paymentToggle.getSelectedToggle()==cash){
+                        MyUser.setPayment(cash);
+
+                    }
+                    else if(paymentToggle.getSelectedToggle()==visa){
+                        MyUser.setPayment(visa);
+
+                    }
+
+                    //submit button
+                    Button doneButton=new Button();
+                    doneButton.setText("Done");
+                    borderpaneCheckout.setBottom(doneButton);
+
+                    borderpaneCheckout.setCenter(cash);
+                    borderpaneCheckout.setCenter(visa);
+
+
+
+                    //clientMenuScene
+
+                            /*GridPane gridpaneMenu = new GridPane();
+                            final VBox vBox1 = new VBox();
+                            final VBox vBox2=new VBox();
+                            final VBox vBox3=new VBox();
+                            final VBox vP1=new VBox();
+                            final VBox vP2=new VBox();
+                            final VBox vP3=new VBox();
+                            final VBox vBoxQuantity1=new VBox();
+                            final VBox vBoxQuantity2=new VBox();
+                            final VBox vBoxQuantity3=new VBox();
+
+                            gridpaneMenu.setStyle("-fx-background-color: beige");
+                            Text menuTitle = new Text("Food Menu");
+
+                            final ObservableList<String> checkboxAppetizerName = FXCollections.observableArrayList("Grilled Chicken", "Mushroom Soup", "Beef Steak");
+                            final ObservableList<String> checkboxMaincourseName = FXCollections.observableArrayList("Greek Salad", "Fried Potatoes");
+                            final ObservableList<String> checkboxDessertName = FXCollections.observableArrayList("Molten Cake", "Apple Pie");*/
+
+
+                           // CheckListView<Employee> checkListView = new CheckListView<Employee>();
+
+                           // ObservableList<Employee> oblist = FXCollections.observableArrayList();
+                            //for (int i = 1; i <= 40; i++) {
+                              //  oblist.add(new Employee("Employee " + i, i));
+                            //}
+                            //checkListView.setItems(oblist);
+
+                            //final String[] appetizers=new String[]{"Greek Salad","Fried Potatoes","Mozzarella Sticks","Onion Rings"};
+                            //final String[] maincourses=new String[]{"Grilled Chicken","Mushroom Soup","Beef Steak","Chicken Lemon Sauce"};
+                            //final String[] desserts=new String[]{"Apple Pie","Molten Cake","Cheese Cake","Banana Caramel"};
+
+                            //List <CheckBox> checkboxAppetizer = new ArrayList<>();
+                            //List <CheckBox> checkboxMaincourse = new ArrayList<>();
+                            //List <CheckBox> checkboxDessert = new ArrayList<>();
+
+
+                            //final String[] priceAppetizer=new String[]{"35","30","25","40"};
+                            //final String[] priceMaincourse=new String[]{"75","60","80","90"};
+                            //final String[] priceDessert=new String[]{"50","60","70","80"};*/
+
+                            /*List <Label> priceLabelAppetizer = new ArrayList<>();
+                            List <Label> priceLabelMaincourse = new ArrayList<>();
+                            List <Label> priceLabelDessert = new ArrayList<>();
+
+                            CheckListView <String> checkboxAppetizer = new CheckListView<>(checkboxAppetizerName);
+                            CheckListView <String> checkboxMaincourse = new CheckListView<>(checkboxMaincourseName);
+                            CheckListView <String> checkboxDessert = new CheckListView<>(checkboxDessertName);
+
+
+                            final TextField quantity1=new TextField();
+                            quantity1.setPromptText("Enter quantity");
+                            final TextField quantity2=new TextField();
+                            quantity2.setPromptText("Enter quantity");
+                            final TextField quantity3=new TextField();
+                            quantity3.setPromptText("Enter quantity");
+                            final TextField quantity4=new TextField();
+                            quantity4.setPromptText("Enter quantity");
+                            final TextField quantity5=new TextField();
+                            quantity5.setPromptText("Enter quantity");
+                            final TextField quantity6=new TextField();
+                            quantity6.setPromptText("Enter quantity");
+                            final TextField quantity7=new TextField();
+                            quantity7.setPromptText("Enter quantity");
+
+
+                            ObservableList<Integer> qunatity = FXCollections.observableArrayList();
+                            ArrayList <ChoiceBox> quantityChoice = new ArrayList<>();
+
+                            TextField [] quantityAppetizersText = new TextField[myAppetizersList.size()];
+                            TextField [] quantityMaincourseText = new TextField[myMaincourseList.size()];
+                            TextField [] quantityDessertsText = new TextField[myDessertsList.size()];*/
+
+                           // quantityAppetizersText[0] = quantity1;
+                            //quantityAppetizersText[1]= quantity2;
+                            //quantityAppetizersText[2] = quantity3;
+                            //quantityMaincourseText[0]= quantity4;
+                           // quantityMaincourseText[1] = quantity5;
+                            //quantityDessertsText[0]= quantity6;
+                            //quantityDessertsText[1] = quantity7;
+
+                           /* for (int i=0; i<myAppetizersList.size(); i++) {
+                                TextField textField = new TextField();
+                                textField.setPromptText("quantity");
+                                quantityAppetizersText[i] = textField;
+                                textField.setPrefWidth(200);
+                                textField.setPrefHeight(32);
+                                //vBoxQuantity1.getChildren().add(textField);
+                            }
+                            for (int i=0; i<myMaincourseList.size(); i++) {
+                                TextField textField = new TextField();
+                                textField.setPromptText("quantity");
+                                quantityMaincourseText[i] = textField;
+                                textField.setPrefWidth(200);
+                                textField.setPrefHeight(32);
+                               // vBoxQuantity2.getChildren().add(textField);
+                            }
+
+                            for (int i=0; i<myDessertsList.size(); i++) {
+                                quantityDessertsText[i] = new TextField();
+                                quantityDessertsText[i].setPromptText("quantity");
+                               // vBoxQuantity3.getChildren().add(quantityDessertsText[i]);
+                            }
+
+                            for(int i =0; i<myDessertsList.size();i++)
+                            {
+                                gridpaneMenu.add(quantityDessertsText[i], i, i);
+                            }*/
+
+                            /*TextField[][] tfNums = new TextField[10][10];
+                            int[][] nums = new int[10][10];
+
+                            for (int i = 0; i < 10; i++) {
+                                for (int j = 0; j < 10; j++) {
+                                    tfNums[i][j] = new TextField();
+                                }
+                            }
+
+                            for (int i = 0; i < 10; i++) {
+                                for (int j = 0; j < 10; j++) {
+                                    nums[i][j] = (int) (Math.random() * 10);
+                                    String number = Integer.toString(nums[i][j]);
+
+                                    tfNums[i][j].setText(number);
+
+                                }
+                            }
+                            for (int i = 0; i < 10; i++) {
+                                for (int j = 0; j < 10; j++) {
+
+                                    gridpaneMenu.add(tfNums[i][j], i, j);
+
+                                }
+                            }*/
+
+
+                            /*for(int i =0; i<10;i++)
+                            {
+                                qunatity.add(i);
+                            }
+
+                            for(int i =0; i<myDishesList.size();i++)
+                            {
+                                quantityChoice.add(new ChoiceBox(qunatity));
+                            }*/
+                            /*for(int i =0; i<myAppetizersList.size();i++)
+                            {
+                               vBoxQuantity1.getChildren().add(quantityText[i]);
+                            }
+                            for(int i =0; i<myMaincourseList.size();i++)
+                            {
+                                vBoxQuantity2.getChildren().add(quantityText[i]);
+                            }
+                            for(int i =0; i<myDessertsList.size();i++)
+                            {
+                                vBoxQuantity3.getChildren().add(quantityText[i]);
+                            }*/
+
+
+
+                           /* for (int i = 0; i < myAppetizersList.size(); i++) {
+                                checkboxAppetizerName.addAll(myAppetizersList.get(i).getName());
+                            }
+                            for (int i = 0; i < myMaincourseList.size(); i++) {
+                                checkboxMaincourseName.addAll(myMaincourseList.get(i).getName());
+                            }
+                            for (int i = 0; i < myDessertsList.size(); i++) {
+                                checkboxDessertName.addAll(myDessertsList.get(i).getName());
+                            }
+
+
+                            final ObservableList<Integer> listOfItems = FXCollections.observableArrayList();
+                            for (int counter = 0; counter <= 10; counter++) {
+                                listOfItems.add(counter);
+                            }
+                            final CheckListView<Integer> checkListView = new CheckListView<>(listOfItems);
+                            checkboxAppetizer.setItems(checkboxAppetizerName);*/
+                            //checkboxAppetizer.setCellFactory(CheckBoxListCell.forListView(c));
+
+
+                            /*for(int i=0;i<myAppetizersList.size();i++){
+                                checkboxAppetizer.add(i, new CheckBox(myAppetizersList.get(i).getName()));
+                            }
+                            for(int i=0;i<myMaincourseList.size();i++){
+                                checkboxMaincourse.add(i, new CheckBox(myMaincourseList.get(i).getName()));
+                            }
+                            for(int i=0;i<myDessertsList.size();i++){
+                                checkboxDessert.add(i, new CheckBox(myDessertsList.get(i).getName()));
+                            }*/
+
+                            /*final ListView<CheckBox> checkboxAppetizersListView= new ListView<>();
+                            checkboxAppetizersListView.getItems().addAll(checkboxAppetizer);
+
+                            final ListView<CheckBox> checkboxMaincourseListView= new ListView<>();
+                            checkboxMaincourseListView.getItems().addAll(checkboxMaincourse);
+
+                            final ListView<CheckBox> checkboxDessertListView= new ListView<>();
+                            checkboxDessertListView.getItems().addAll(checkboxDessert);*/
+
+
+
+                            //price labeling
+                            /*for(int i=0; i<myAppetizersList.size(); i++){
+                                priceLabelAppetizer.add(i, new Label(Double.toString(myAppetizersList.get(i).getPrice())));
+                            }
+                            for(int i=0;i<myMaincourseList.size();i++){
+                                priceLabelMaincourse.add(i, new Label(Double.toString(myMaincourseList.get(i).getPrice())));
+                            }
+                            for(int i=0;i<myDessertsList.size();i++){
+                                priceLabelDessert.add(i, new Label(Double.toString(myDessertsList.get(i).getPrice())));
+                            }*/
+
+
+
+                            /*vBox1.setMaxWidth(200);
+                            vBox2.setMaxWidth(200);
+                            vBox3.setMaxWidth(200);
+                            vBox1.getChildren().addAll(checkboxAppetizer);
+                            vBox2.getChildren().addAll(checkboxMaincourse);
+                            vBox3.getChildren().addAll(checkboxDessert);
+                            vBox1.setPadding(new Insets(10,10,10,10));
+                            vBox1.setSpacing(10);
+                            vBox2.setPadding(new Insets(10,10,10,10));
+                            vBox2.setSpacing(10);
+                            vBox3.setPadding(new Insets(10,10,10,10));
+                            vBox3.setSpacing(10);*/
+                            //prices
+                           // vP1.setMaxWidth(50);
+                           // vP2.setMaxWidth(50);
+                            //vP3.setMaxWidth(50);
+                            //vP1.setPadding(new Insets(5,5,5,5) );
+                           // vP1.setSpacing(10);
+                            //vP1.getChildren().addAll(priceLabelAppetizer);
+                           // vP2.setPadding(new Insets(5,5,5,5) );
+                            //vP2.setSpacing(10);
+                            //vP2.getChildren().addAll(priceLabelMaincourse);
+                           //vP3.setPadding(new Insets(5,5,5,5) );
+                           // vP3.setSpacing(10);
+                            //vP3.getChildren().addAll(priceLabelDessert);
+
+                            /*vBoxQuantity1.getChildren().addAll(quantityAppetizersText);
+                            vBoxQuantity2.getChildren().addAll(quantityMaincourseText);
+                            vBoxQuantity3.getChildren().addAll(quantityDessertsText);
+
+
+
+                            gridpaneMenu.setAlignment(Pos.CENTER);
+                            gridpaneMenu.setPadding(new Insets(5));
+                            gridpaneMenu.setHgap(5);
+                            gridpaneMenu.setVgap(5);
+                            gridpaneMenu.setPadding(new Insets(10,10,10,10));
+                            gridpaneMenu.add(vBox1,0,1);
+                            gridpaneMenu.add(vBox2,3,1);
+                            gridpaneMenu.add(vBox3,6,1);
+                            //gridpaneMenu.add(vP1,1,1);
+                           // gridpaneMenu.add(vP2,4,1);
+                            //gridpaneMenu.add(vP3,7,1);
+                            gridpaneMenu.add(vBoxQuantity1,2,1);
+                            gridpaneMenu.add(vBoxQuantity2,5,1);
+                            gridpaneMenu.add(vBoxQuantity3,8,1);*/
+
+
+
+                            //checkout
+                           /* Button checkoutButton = new Button();
+                            checkoutButton.setText("checkout");
+
+                            gridpaneMenu.add(checkoutButton, 8,2);
+
+                            Scene menuScene=new Scene(gridpaneMenu,800,600);*/
+
+
+   /* checkboxAppetizer.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+               @Override
+
+               public void handle(MouseEvent arg0) {
+
+                   //Check wich list index is selected then set txtContent value for that index
+
+                   if(checkboxAppetizer.getSelectionModel().getSelectedIndex() == 0){
+
+                       System.out.println("Selected index: 0");
+
+                   }
+
+
+
+                   else if(checkboxAppetizer.getSelectionModel().getSelectedIndex() == 1){
+
+                       System.out.println("Selected index: 1");
+
+                   }
+
+               }*/
+
+           //});
+
+                   // checkboxAppetizer.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+                   //public void onChanged(ListChangeListener.Change<? extends String> c) {
+                   //System.out.println(checkboxAppetizer.getCheckModel().getCheckedItems());
+                   // }
+                   /*checkboxAppetizer.getCheckModel().getCheckedIndices().addListener(new ListChangeListener<Integer>() {
+                           @Override
+                           public void onChanged(javafx.collections.ListChangeListener.Change<? extends Integer> c) {
+                               while (c.next()) {
+                                   if (c.wasAdded()) {
+                                       for (int i : c.getAddedSubList()) {
+                                           System.out.println(checkListView.getItems().get(i).getName() + " selected");
+                                       }
+                                   }
+                                   if (c.wasRemoved()) {
+                                       for (int i : c.getRemoved()) {
+                                           System.out.println(checkListView.getItems().get(i).getName() + " deselected");
+                                       }
+                                   }
+                               }
+                           }
+                       });*/
+                   // });
+
+           //checkoutCalculation(checkboxAppetizer,checkboxMaincourse,checkboxDessert);
+          /* for(int i = 0; i<appetizersSize ; i++) {
+               quantityAppetizersText[i].setOnMouseExited(e -> {
+               checkboxAppetizer.getCheckModel().getCheckedIndices().addListener(new ListChangeListener() {
+                   public void onChanged(ListChangeListener.Change c) {
+                       ObservableList<Integer> selectedAppetizerIndices = checkboxAppetizer.getCheckModel().getCheckedIndices();
+
+                       System.out.println(selectedAppetizerIndices);
+
+                       for (Integer i = 0; i < appetizersSize; i++) {
+
+                           if (selectedAppetizerIndices.contains(i)) {
+
+                               Integer quantity = parseInt((quantityAppetizersText[i].getText()));
+                               System.out.println(quantity);
+                               for (int quantityChosen = 0; quantityChosen < quantity; quantityChosen++)
+                                   ((Client) currentUser).buy(myAppetizersList.get(i));
+
+                           }
+                       }
+                   }
+               });
+               });*/
+           //}
+
+           // private Scene createMenuScene()
+               //{
+
+                  /*GridPane gridpaneMenu = new GridPane();
+                   final VBox vBox1 = new VBox();
+                   final VBox vBox2=new VBox();
+                   final VBox vBox3=new VBox();
+                   final VBox vP1=new VBox();
+                   final VBox vP2=new VBox();
+                   final VBox vP3=new VBox();
+                   final VBox vBoxQuantity1=new VBox();
+                   final VBox vBoxQuantity2=new VBox();
+                   final VBox vBoxQuantity3=new VBox();
+
+
+                   Text taxesText = new Text("Taxes\nAppetizers --> 0.1%\nMaincourse --> 0.15%\nDesserts --> 0.2%\n" );
+                   taxesText.setFont(new Font("verdana", 15));
+
+
+                   gridpaneMenu.setStyle("-fx-background-color: beige");
+                   Text menuTitle = new Text("Food Menu");
+
+                   final ObservableList<String> checkboxAppetizerName = FXCollections.observableArrayList();
+                   final ObservableList<String> checkboxMaincourseName = FXCollections.observableArrayList();
+                   final ObservableList<String> checkboxDessertName = FXCollections.observableArrayList();
+
+                   for (int i = 0; i < myAppetizersList.size(); i++) {
+                       checkboxAppetizerName.add(myAppetizersList.get(i).getName());
+                   }
+                   for (int i = 0; i < myMaincourseList.size(); i++) {
+                       checkboxMaincourseName.add(myMaincourseList.get(i).getName());
+                   }
+                   for (int i = 0; i < myDessertsList.size(); i++) {
+                       checkboxDessertName.add(myDessertsList.get(i).getName());
+                   }
+
+
+                   checkboxAppetizer = new CheckListView<>(checkboxAppetizerName);
+                   checkboxMaincourse = new CheckListView<>(checkboxMaincourseName);
+                   checkboxDessert = new CheckListView<>(checkboxDessertName);
+
+                   checkboxAppetizer.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                   checkboxMaincourse.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                   checkboxDessert.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+                   quantityAppetizersText = new TextField[myAppetizersList.size()];
+                   quantityMaincourseText = new TextField[myMaincourseList.size()];
+                   quantityDessertsText = new TextField[myDessertsList.size()];
+
+
+                   for (int i=0; i<myAppetizersList.size(); i++) {
+                       TextField textField = new TextField();
+                       textField.setText("0");
+                       quantityAppetizersText[i] = textField;
+                       textField.setPrefWidth(200);
+                       textField.setPrefHeight(32);
+                       vBoxQuantity1.getChildren().add(textField);
+                   }
+
+                   for (int i=0; i<myMaincourseList.size(); i++) {
+
+                       TextField textField = new TextField();
+                       textField.setText("0");
+                       quantityMaincourseText[i] = textField;
+                       textField.setPrefWidth(200);
+                       textField.setPrefHeight(32);
+                       vBoxQuantity2.getChildren().add(textField);
+                   }
+
+                   for (int i=0; i<myDessertsList.size(); i++) {
+                       quantityDessertsText[i] = new TextField();
+                       quantityDessertsText[i].setText("0");
+                       vBoxQuantity3.getChildren().add(quantityDessertsText[i]);
+                   }
+
+
+                   ArrayList <String> appetizersPrice = new ArrayList<>();
+                   ArrayList <String> maincoursePrice = new ArrayList<>();
+                   ArrayList <String> dessertPrice = new ArrayList<>();
+
+                    appetizersPriceList = new ListView<>();
+                    maincoursePriceList = new ListView<>();
+                    dessertsPriceList = new ListView<>();
+
+
+                   //price labeling
+                   for(int i=0; i<myAppetizersList.size(); i++){
+                       appetizersPrice.add(i, Double.toString(myAppetizersList.get(i).getPrice()));
+                   }
+                   for(int i=0;i<myMaincourseList.size();i++){
+                       maincoursePrice.add(i, Double.toString(myMaincourseList.get(i).getPrice()));
+                   }
+                   for(int i=0;i<myDessertsList.size();i++){
+                       dessertPrice.add(i, Double.toString(myDessertsList.get(i).getPrice()));
+                   }
+
+                   appetizersPriceList.getItems().addAll(appetizersPrice);
+                   maincoursePriceList.getItems().addAll(maincoursePrice);
+                   dessertsPriceList.getItems().addAll(dessertPrice);
+
+
+                   vBox1.setMaxWidth(200);
+                   vBox2.setMaxWidth(200);
+                   vBox3.setMaxWidth(200);
+                   vP1.setMaxWidth(200);
+                   vP2.setMaxWidth(200);
+                   vP3.setMaxWidth(200);
+
+
+                   vBox1.getChildren().addAll(checkboxAppetizer);
+                   vBox2.getChildren().addAll(checkboxMaincourse);
+                   vBox3.getChildren().addAll(checkboxDessert);
+                   vBox1.setPadding(new Insets(10,10,10,10));
+                   vBox1.setSpacing(10);
+                   vBox2.setPadding(new Insets(10,10,10,10));
+                   vBox2.setSpacing(10);
+                   vBox3.setPadding(new Insets(10,10,10,10));
+                   vBox3.setSpacing(10);
+
+
+                   vP1.getChildren().addAll(appetizersPriceList);
+                   vP2.getChildren().addAll(maincoursePriceList);
+                   vP3.getChildren().addAll(dessertsPriceList);
+
+
+                   vP1.setPadding(new Insets(10,10,10,10));
+                   vP1.setSpacing(10);
+                   vP2.setPadding(new Insets(10,10,10,10));
+                   vP2.setSpacing(10);
+                   vP3.setPadding(new Insets(10,10,10,10));
+                   vP3.setSpacing(10);
+
+
+
+                   gridpaneMenu.setAlignment(Pos.CENTER);
+                   gridpaneMenu.setPadding(new Insets(5));
+                   gridpaneMenu.setHgap(5);
+                   gridpaneMenu.setVgap(5);
+                   gridpaneMenu.setPadding(new Insets(10,10,10,10));
+                   gridpaneMenu.add(vBox1,0,1);
+                   gridpaneMenu.add(vBox2,3,1);
+                   gridpaneMenu.add(vBox3,6,1);
+                   gridpaneMenu.add(vP1,1,1);
+                   gridpaneMenu.add(vP2,4,1);
+                   gridpaneMenu.add(vP3,7,1);
+                   vBoxQuantity1.setMinWidth(50);
+                   vBoxQuantity2.setMinWidth(50);
+                   vBoxQuantity3.setMinWidth(50);
+                   vBoxQuantity1.setPadding(new Insets(10,10,10,10));
+                   vBoxQuantity1.setSpacing(10);
+                   vBoxQuantity2.setPadding(new Insets(10,10,10,10));
+                   vBoxQuantity2.setSpacing(10);
+                   vBoxQuantity3.setPadding(new Insets(10,10,10,10));
+                   vBoxQuantity3.setSpacing(10);
+                   gridpaneMenu.add(vBoxQuantity1,2,1);
+                   gridpaneMenu.add(vBoxQuantity2,5,1);
+                   gridpaneMenu.add(vBoxQuantity3,8,1);
+
+
+
+                   //checkout
+
+                   addAllDishes.setText("Click here to add all your dishes");
+                   checkoutButton.setText("Checkout");
+
+                   gridpaneMenu.add(addAllDishes, 8,3);
+                   gridpaneMenu.add(checkoutButton, 8,4);
+                   gridpaneMenu.add(taxesText, 8,2);
+
+
+
+                   Scene menuScene=new Scene(gridpaneMenu,1000,1000);*/
+
+                   //return menuScene;
+               //}
+                /* for (MyTable currentUserTable : myTablesList)
+                           {
+                               if(currentUserTable.isSmoking() == smoking && currentUserTable.getNumberOfSeats() == numberOfSeats)
+                               {
+                                   if(!currentUserTable.isReserved())
+                                   {
+                                       chosenTable = currentUserTable;
+                                       currentUserTable.setReserved(true);
+                                      break;
+                                   }
+                               }
+                           }*/
+                           /*for (MyTable table : myTablesList)
+                           {
+                               System.out.println(table.getNumber());
+                               System.out.println(table.getNumberOfSeats());
+                               System.out.println(table.isSmoking());
+                               //System.out.println(table.isView());
+                               System.out.println(table.isReserved());
+                           }*/
+                           //if (((Client) currentUser).reserve(myTablesList, chosenTable))
+                          // primaryStage.setScene(menuScene);
+
+
+                           //if(chosenTable.isAvailable(myTablesList))
+                          // if(((Client)currentUser).reserve(clientsReservedTable, myTablesList, chosenTable))
+
+    /*myyRestaurant.getClientsReservedTable().forEach((key, value) -> System.out.println(key.getName() + ":" + value.getNumber()));
+
+             for (Map.Entry<Client, MyTable> entry : myyRestaurant.getClientsReservedTable().entrySet()) {
+                  System.out.println(entry.getKey().getName() + ":" + entry.getValue().getNumber());
+              }
+
+              for (Client keys : myyRestaurant.getClientsReservedTable().keySet())
+              {
+                  System.out.println(keys.getName() + ":"+ myyRestaurant.getClientsReservedTable().get(keys).getNumber());
+              }*/
+ChoiceBox<Integer> seatsChoice = new ChoiceBox<>();
+        seatsChoice.setValue(4);
+        seatsChoice.getItems().addAll(seats);
